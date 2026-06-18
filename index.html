@@ -3,259 +3,255 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a6fa8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Hospital">
+<link rel="manifest" href="manifest.json">
 <title>Recepción Hospital</title>
 <style>
-  :root {
-    --azul:#1a6fa8; --azul-oscuro:#15608f; --azul-claro:#e8f4fd;
-    --verde:#27ae60; --rojo:#e74c3c; --naranja:#e67e22;
-    --gris:#7f8c8d; --borde:#dde1e5; --texto:#2c3e50;
-    --blanco:#ffffff; --fondo:#eef2f7;
-    --sombra:0 2px 8px rgba(0,0,0,0.08); --radio:10px;
-  }
+  :root{--azul:#1a6fa8;--azul-oscuro:#15608f;--verde:#27ae60;--rojo:#e74c3c;
+    --naranja:#e67e22;--gris:#7f8c8d;--borde:#dde1e5;--texto:#2c3e50;
+    --blanco:#fff;--fondo:#eef2f7;--sombra:0 2px 8px rgba(0,0,0,.08);--radio:10px}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--fondo);color:var(--texto);min-height:100vh}
 
-  /* ── PANTALLA DE CONFIGURACIÓN ── */
-  #pantalla-config{
-    position:fixed;inset:0;background:rgba(0,0,0,0.7);
-    display:flex;align-items:center;justify-content:center;z-index:9999;padding:1rem
-  }
-  .config-box{
-    background:#fff;border-radius:16px;padding:2rem;max-width:520px;width:100%;
-    box-shadow:0 20px 60px rgba(0,0,0,0.3)
-  }
-  .config-logo{font-size:2rem;margin-bottom:0.5rem}
-  .config-titulo{font-size:1.3rem;font-weight:700;color:var(--azul);margin-bottom:0.3rem}
-  .config-sub{font-size:0.88rem;color:var(--gris);margin-bottom:1.5rem;line-height:1.5}
-  .config-paso{
-    background:#f8fafc;border:1px solid var(--borde);border-radius:10px;
-    padding:1rem;margin-bottom:1rem;font-size:0.85rem;line-height:1.6
-  }
-  .config-paso strong{color:var(--azul);display:block;margin-bottom:0.3rem}
-  .config-paso code{
-    background:#e8f4fd;color:#1a5276;padding:2px 6px;border-radius:4px;font-size:0.82rem
-  }
-  .config-campo{margin-bottom:1rem}
-  .config-campo label{display:block;font-size:0.78rem;font-weight:700;color:var(--gris);
-    text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem}
-  .config-campo input{width:100%;border:1.5px solid var(--borde);border-radius:8px;
-    padding:.7rem 1rem;font-size:.9rem;font-family:monospace}
-  .config-campo input:focus{outline:none;border-color:var(--azul)}
-  .btn-config{width:100%;background:var(--azul);color:#fff;border:none;border-radius:8px;
-    padding:1rem;font-size:1rem;font-weight:700;cursor:pointer;margin-top:.5rem}
-  .btn-config:hover{background:var(--azul-oscuro)}
-  .config-error{background:#fee2e2;color:#991b1b;border-radius:8px;padding:.7rem 1rem;
-    font-size:.85rem;margin-top:.8rem;display:none}
-  .config-link{display:inline-flex;align-items:center;gap:4px;color:var(--azul);
-    font-size:.82rem;text-decoration:none;font-weight:600}
-  .config-link:hover{text-decoration:underline}
-  .btn-reconfig{background:none;border:1px solid var(--borde);border-radius:6px;
-    padding:.3rem .7rem;font-size:.75rem;cursor:pointer;color:var(--gris);margin-left:.5rem}
-  .btn-reconfig:hover{background:#f1f3f5}
+  /* CONFIG */
+  #pantalla-config{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;
+    align-items:center;justify-content:center;z-index:9999;padding:1rem}
+  .config-box{background:#fff;border-radius:16px;padding:2rem;max-width:540px;width:100%;
+    box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:90vh;overflow-y:auto}
+  .config-logo{font-size:2rem;margin-bottom:.4rem}
+  .config-titulo{font-size:1.3rem;font-weight:700;color:var(--azul);margin-bottom:.3rem}
+  .config-sub{font-size:.87rem;color:var(--gris);margin-bottom:1.2rem;line-height:1.5}
+  .config-paso{background:#f8fafc;border:1px solid var(--borde);border-radius:10px;
+    padding:1rem;margin-bottom:.8rem;font-size:.84rem;line-height:1.65}
+  .config-paso strong{color:var(--azul);display:block;margin-bottom:.25rem;font-size:.88rem}
+  .config-paso code{background:#e8f4fd;color:#1a5276;padding:2px 6px;border-radius:4px;font-size:.81rem}
+  .cfg-f{margin-bottom:.9rem}
+  .cfg-f label{display:block;font-size:.76rem;font-weight:700;color:var(--gris);
+    text-transform:uppercase;letter-spacing:.05em;margin-bottom:.35rem}
+  .cfg-f input{width:100%;border:1.5px solid var(--borde);border-radius:8px;
+    padding:.7rem 1rem;font-size:.88rem;font-family:monospace}
+  .cfg-f input:focus{outline:none;border-color:var(--azul)}
+  .btn-cfg{width:100%;background:var(--azul);color:#fff;border:none;border-radius:8px;
+    padding:1rem;font-size:1rem;font-weight:700;cursor:pointer;margin-top:.3rem}
+  .btn-cfg:hover{background:var(--azul-oscuro)}
+  .cfg-err{background:#fee2e2;color:#991b1b;border-radius:8px;padding:.7rem 1rem;
+    font-size:.84rem;margin-top:.7rem;display:none}
+  .cfg-link{color:var(--azul);font-size:.82rem;font-weight:600}
 
-  /* ── ESTADO DE CONEXIÓN ── */
-  #estado-conexion{
-    display:flex;align-items:center;gap:6px;padding:.5rem 1rem;
-    font-size:.8rem;font-weight:600
-  }
-  .dot-conexion{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-  .conectado{color:var(--verde)}.dot-conectado{background:var(--verde);animation:pulsar 2s infinite}
-  .desconectado{color:var(--rojo)}.dot-desconectado{background:var(--rojo)}
-  .conectando{color:var(--naranja)}.dot-conectando{background:var(--naranja);animation:pulsar .8s infinite}
-
-  /* ── NAVEGACIÓN ── */
+  /* NAV */
   nav{background:var(--azul);color:#fff;display:flex;align-items:center;
-    padding:0 1rem;box-shadow:0 2px 6px rgba(0,0,0,0.2);flex-wrap:wrap}
-  .nav-logo{font-size:1.1rem;font-weight:700;padding:1rem 1.2rem 1rem .5rem;
-    border-right:1px solid rgba(255,255,255,.2);margin-right:.5rem;white-space:nowrap}
+    padding:0 1rem;box-shadow:0 2px 6px rgba(0,0,0,.2);flex-wrap:wrap}
+  .nav-logo{font-size:1.05rem;font-weight:700;padding:1rem 1.2rem 1rem .4rem;
+    border-right:1px solid rgba(255,255,255,.2);margin-right:.4rem;white-space:nowrap}
   .nav-logo span{font-weight:300;opacity:.8}
   nav button.tab{background:transparent;color:rgba(255,255,255,.8);border:none;
-    padding:1rem 1.1rem;font-size:.88rem;cursor:pointer;transition:all .15s;
+    padding:1rem 1rem;font-size:.87rem;cursor:pointer;transition:all .15s;
     border-bottom:3px solid transparent;font-weight:500;white-space:nowrap}
   nav button.tab:hover{color:#fff;background:rgba(255,255,255,.08)}
   nav button.tab.activo{color:#fff;border-bottom:3px solid #fff}
-  .nav-derecha{margin-left:auto;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-  .nav-hora{font-size:.82rem;opacity:.85;white-space:nowrap;padding:.5rem}
+  .nav-der{margin-left:auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+  .nav-hora{font-size:.8rem;opacity:.85;white-space:nowrap;padding:.5rem}
+  .dot-cx{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  #estado-cx{display:flex;align-items:center;gap:5px;font-size:.78rem;font-weight:600;padding:.5rem}
+  .cx-ok{color:#6ee7b7}.dot-ok{background:#27ae60;animation:pls 2s infinite}
+  .cx-no{color:#fca5a5}.dot-no{background:#e74c3c}
+  .cx-wait{color:#fcd34d}.dot-wait{background:#f39c12;animation:pls .8s infinite}
+  .btn-recfg{background:none;border:1px solid rgba(255,255,255,.3);border-radius:6px;
+    padding:.3rem .6rem;font-size:.73rem;cursor:pointer;color:rgba(255,255,255,.8)}
+  .btn-recfg:hover{background:rgba(255,255,255,.1)}
 
-  /* ── LAYOUT ── */
+  /* LAYOUT */
   .contenedor{max-width:1100px;margin:0 auto;padding:1.5rem}
   .vista{display:none}.vista.activa{display:block}
 
-  /* ── CARDS ── */
+  /* CARDS */
   .card{background:#fff;border-radius:var(--radio);border:1px solid var(--borde);
     box-shadow:var(--sombra);padding:1.5rem;margin-bottom:1.5rem}
-  .card-titulo{font-size:1rem;font-weight:600;color:var(--azul);margin-bottom:1.2rem;
+  .card-t{font-size:1rem;font-weight:600;color:var(--azul);margin-bottom:1.2rem;
     padding-bottom:.8rem;border-bottom:1px solid var(--borde)}
 
-  /* ── FORMULARIO ── */
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  @media(max-width:640px){.grid-2{grid-template-columns:1fr}}
-  .campo{display:flex;flex-direction:column;gap:.4rem;margin-top:1rem}
+  /* FORM */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:620px){.grid2{grid-template-columns:1fr}}
+  .campo{display:flex;flex-direction:column;gap:.35rem;margin-top:.9rem}
   .campo:first-child{margin-top:0}
-  label{font-size:.78rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:.05em}
+  label{font-size:.76rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:.05em}
   input,select,textarea{border:1.5px solid var(--borde);border-radius:8px;padding:.75rem 1rem;
     font-size:1rem;color:var(--texto);background:#fff;width:100%;transition:border-color .15s;font-family:inherit}
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--azul);
     box-shadow:0 0 0 3px rgba(26,111,168,.12)}
-  textarea{resize:vertical;min-height:75px}
+  textarea{resize:vertical;min-height:72px}
+  .btn-env{background:var(--azul);color:#fff;border:none;border-radius:8px;padding:1rem;
+    font-size:1.05rem;font-weight:700;cursor:pointer;width:100%;margin-top:1rem;
+    display:flex;align-items:center;justify-content:center;gap:.5rem;transition:all .15s}
+  .btn-env:hover{background:var(--azul-oscuro)}
+  .btn-env:active{transform:scale(.97)}
+  .btn-env:disabled{opacity:.5;cursor:not-allowed}
 
-  /* ── BOTONES ── */
-  .btn-primario{background:var(--azul);color:#fff;border:none;border-radius:8px;
-    padding:1rem;font-size:1.05rem;font-weight:700;cursor:pointer;width:100%;
-    margin-top:1rem;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:.5rem}
-  .btn-primario:hover{background:var(--azul-oscuro)}
-  .btn-primario:active{transform:scale(.97)}
-  .btn-primario:disabled{opacity:.5;cursor:not-allowed}
+  /* BADGES */
+  .badge{display:inline-flex;align-items:center;padding:4px 10px;border-radius:20px;
+    font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .be{background:#fef3c7;color:#92400e}
+  .br{background:#ede9fe;color:#5b21b6}
+  .bc{background:#dbeafe;color:#1e40af}
+  .ba{background:#d1fae5;color:#065f46}
+  .bx{background:#fee2e2;color:#991b1b}
+  .tb{display:inline-block;padding:3px 10px;border-radius:5px;font-size:.71rem;font-weight:700;text-transform:uppercase}
+  .tg{background:#dbeafe;color:#1e40af}
+  .te{background:#d1fae5;color:#065f46}
+  .ta{background:#fef3c7;color:#92400e}
+  .to{background:#f3f4f6;color:#374151}
 
-  /* ── ESTADOS / BADGES ── */
-  .badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;
-    font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
-  .badge-espera   {background:#fef3c7;color:#92400e}
-  .badge-recibido {background:#ede9fe;color:#5b21b6}
-  .badge-consulta {background:#dbeafe;color:#1e40af}
-  .badge-atendido {background:#d1fae5;color:#065f46}
-  .badge-cancelado{background:#fee2e2;color:#991b1b}
-
-  .tipo-badge{display:inline-block;padding:3px 10px;border-radius:5px;font-size:.72rem;font-weight:700;text-transform:uppercase}
-  .tipo-general    {background:#dbeafe;color:#1e40af}
-  .tipo-ecg        {background:#d1fae5;color:#065f46}
-  .tipo-aseguradora{background:#fef3c7;color:#92400e}
-  .tipo-otro       {background:#f3f4f6;color:#374151}
-
-  /* ── TARJETA PACIENTE ── */
-  .paciente-card{background:#fff;border:1px solid var(--borde);border-radius:var(--radio);
+  /* PACIENTE CARD */
+  .pac{background:#fff;border:1px solid var(--borde);border-radius:var(--radio);
     padding:1rem 1.2rem;margin-bottom:.8rem;box-shadow:var(--sombra);transition:box-shadow .15s}
-  .paciente-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
-  .paciente-card.nuevo{animation:entrar .4s ease;border-left:4px solid var(--azul)}
+  .pac:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
+  .pac.nuevo{animation:entrar .4s ease;border-left:4px solid var(--azul)}
   @keyframes entrar{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-  .pac-header{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
-  .pac-nombre{font-size:1.05rem;font-weight:700}
-  .pac-meta{font-size:.82rem;color:var(--gris);margin-top:2px}
-  .pac-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-  .pac-detalle{margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--borde);
-    font-size:.87rem;color:#444;display:grid;grid-template-columns:1fr 1fr;gap:.3rem}
-  .pac-detalle strong{color:var(--texto)}
-  .pac-acciones{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
-
-  .btn-estado{padding:.38rem .8rem;border-radius:6px;font-size:.78rem;font-weight:700;
+  .ph{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .pn{font-size:1.05rem;font-weight:700}
+  .pm{font-size:.81rem;color:var(--gris);margin-top:2px}
+  .pd{margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--borde);
+    font-size:.86rem;color:#444;display:grid;grid-template-columns:1fr 1fr;gap:.3rem}
+  .pd strong{color:var(--texto)}
+  .pac-acc{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+  .be2{padding:.38rem .8rem;border-radius:6px;font-size:.78rem;font-weight:700;
     cursor:pointer;border:1.5px solid transparent;transition:all .12s}
-  .btn-estado:hover{filter:brightness(.9)}
-  .btn-estado.sel{box-shadow:0 0 0 2.5px currentColor}
-  .btn-recibido {background:#ede9fe;color:#5b21b6;border-color:#c4b5fd}
-  .btn-espera   {background:#fef3c7;color:#92400e;border-color:#fcd34d}
-  .btn-consulta {background:#dbeafe;color:#1e40af;border-color:#93c5fd}
-  .btn-atendido {background:#d1fae5;color:#065f46;border-color:#6ee7b7}
-  .btn-cancelado{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
+  .be2:hover{filter:brightness(.9)}
+  .be2.sel{box-shadow:0 0 0 2.5px currentColor}
+  .s-r{background:#ede9fe;color:#5b21b6;border-color:#c4b5fd}
+  .s-e{background:#fef3c7;color:#92400e;border-color:#fcd34d}
+  .s-c{background:#dbeafe;color:#1e40af;border-color:#93c5fd}
+  .s-a{background:#d1fae5;color:#065f46;border-color:#6ee7b7}
+  .s-x{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
 
-  /* ── PANEL STATS ── */
-  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin-bottom:1.5rem}
-  .stat-card{background:#fff;border:1px solid var(--borde);border-radius:var(--radio);
+  /* STATS */
+  .sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:1rem;margin-bottom:1.5rem}
+  .sc{background:#fff;border:1px solid var(--borde);border-radius:var(--radio);
     padding:1.2rem;text-align:center;box-shadow:var(--sombra)}
-  .stat-num{font-size:2rem;font-weight:700;line-height:1}
-  .stat-label{font-size:.75rem;color:var(--gris);margin-top:.3rem;text-transform:uppercase;letter-spacing:.05em}
+  .sn{font-size:2rem;font-weight:700;line-height:1}
+  .sl{font-size:.73rem;color:var(--gris);margin-top:.3rem;text-transform:uppercase;letter-spacing:.05em}
 
-  /* ── TABLA ── */
-  .tabla-wrap{overflow-x:auto}
-  table{width:100%;border-collapse:collapse;font-size:.87rem}
-  th{background:#f8fafc;color:var(--gris);font-weight:700;font-size:.73rem;text-transform:uppercase;
+  /* TABLA */
+  .tw{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:.86rem}
+  th{background:#f8fafc;color:var(--gris);font-weight:700;font-size:.72rem;text-transform:uppercase;
     letter-spacing:.05em;padding:.7rem 1rem;text-align:left;border-bottom:1px solid var(--borde)}
-  td{padding:.75rem 1rem;border-bottom:1px solid #f1f3f5;vertical-align:middle}
+  td{padding:.72rem 1rem;border-bottom:1px solid #f1f3f5;vertical-align:middle}
   tr:last-child td{border-bottom:none}
   tr:hover td{background:#f8fafc}
 
-  /* ── UTILIDADES ── */
-  .vacio{text-align:center;padding:2.5rem;color:var(--gris);font-size:.95rem}
-  h2.seccion{font-size:1.2rem;font-weight:700;color:var(--texto);margin-bottom:1rem;
+  /* UTILS */
+  .vacio{text-align:center;padding:2.5rem;color:var(--gris);font-size:.93rem}
+  h2.sec{font-size:1.18rem;font-weight:700;color:var(--texto);margin-bottom:1rem;
     display:flex;align-items:center;gap:.5rem}
-  .chip{background:var(--azul);color:#fff;border-radius:20px;font-size:.73rem;
-    font-weight:700;padding:2px 10px}
+  .chip{background:var(--azul);color:#fff;border-radius:20px;font-size:.72rem;font-weight:700;padding:2px 10px}
 
-  /* ── ALERTA NUEVA LLEGADA ── */
-  #alerta-nueva{position:fixed;bottom:1.5rem;right:1.5rem;background:#1a3a5c;color:#fff;
+  /* ALERTA */
+  #alerta{position:fixed;bottom:1.5rem;right:1.5rem;background:#1a3a5c;color:#fff;
     border-radius:14px;padding:1.2rem 1.4rem;box-shadow:0 8px 32px rgba(0,0,0,.35);
-    z-index:9995;display:none;max-width:330px;animation:slideIn .3s ease;
-    border:2px solid #FFD600}
+    z-index:9990;display:none;max-width:320px;animation:slideIn .3s ease;border:2px solid #FFD600}
   @keyframes slideIn{from{transform:translateX(120px);opacity:0}to{transform:translateX(0);opacity:1}}
-  @keyframes iconoPulsar{from{transform:scale(1)}to{transform:scale(1.15)}}
-  .alerta-t{font-weight:700;font-size:1rem;margin-bottom:.4rem;color:#FFD600}
-  .alerta-d{font-size:.85rem;opacity:.95;line-height:1.5}
-  #alerta-nueva button{background:rgba(255,214,0,.15);border:1px solid #FFD600;color:#FFD600;
-    border-radius:6px;padding:.4rem .8rem;font-size:.8rem;cursor:pointer;font-weight:700}
-  #alerta-nueva button:hover{background:rgba(255,214,0,.3)}
+  @keyframes pip{from{transform:scale(1)}to{transform:scale(1.18)}}
+  .al-t{font-weight:700;font-size:.98rem;margin-bottom:.4rem;color:#FFD600}
+  .al-d{font-size:.84rem;line-height:1.5;opacity:.95}
+  .al-btns{display:flex;gap:.5rem;margin-top:.8rem}
+  .al-btn{flex:1;background:rgba(255,214,0,.15);border:1px solid #FFD600;color:#FFD600;
+    border-radius:6px;padding:.4rem .6rem;font-size:.78rem;cursor:pointer;font-weight:700}
+  .al-btn:hover{background:rgba(255,214,0,.3)}
 
-  /* ── TOAST ── */
+  /* OVERLAY */
+  #overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);
+    z-index:9985;align-items:center;justify-content:center;padding:1rem}
+  .ov-box{background:#fff;border-radius:20px;padding:2rem;max-width:400px;width:100%;
+    text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:entrar .3s ease}
+  .ov-ico{width:80px;height:80px;border-radius:50%;background:#FFD600;
+    display:flex;align-items:center;justify-content:center;
+    font-size:3rem;font-weight:900;color:#000;margin:0 auto 1rem;
+    animation:pip .5s ease infinite alternate;user-select:none}
+  .ov-titulo{font-size:1.4rem;font-weight:700;color:#1a6fa8;margin-bottom:.5rem}
+  .ov-d{font-size:1rem;color:#444;line-height:1.6;margin-bottom:1.5rem}
+  .ov-btn{background:#1a6fa8;color:#fff;border:none;border-radius:10px;
+    padding:1rem 2rem;font-size:1.1rem;font-weight:700;cursor:pointer;width:100%}
+
+  /* BOTÓN NOTIF */
+  #btn-notif{position:fixed;bottom:1.5rem;left:1.5rem;background:#FFD600;color:#000;
+    border:none;border-radius:10px;padding:.65rem 1.1rem;font-size:.82rem;font-weight:700;
+    cursor:pointer;display:none;box-shadow:0 4px 14px rgba(0,0,0,.2);z-index:500;
+    animation:pip 1s ease infinite alternate}
+
   #toast{position:fixed;top:1rem;left:50%;transform:translateX(-50%);color:#fff;
     padding:.7rem 1.4rem;border-radius:8px;font-weight:600;font-size:.9rem;
     display:none;z-index:9998;box-shadow:0 4px 12px rgba(0,0,0,.2)}
 
-  @keyframes pulsar{0%,100%{opacity:1}50%{opacity:.25}}
+  @keyframes pls{0%,100%{opacity:1}50%{opacity:.25}}
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════ PANTALLA CONFIGURACIÓN ══════════════════════ -->
+<!-- CONFIG -->
 <div id="pantalla-config">
   <div class="config-box">
     <div class="config-logo">🏥</div>
     <div class="config-titulo">Configuración inicial</div>
-    <div class="config-sub">
-      Esta aplicación usa <strong>Firebase</strong> (gratuito) para sincronizar datos
-      en tiempo real entre recepción y consultorio. Solo necesitas hacerlo una vez.
+    <div class="config-sub">Solo necesitas hacer esto una vez por dispositivo. Los datos se sincronizan en tiempo real.</div>
+
+    <div class="config-paso">
+      <strong>Paso 1 — URL de Firebase Realtime Database</strong>
+      Ve a <a class="cfg-link" href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a>
+      → tu proyecto → Compilación → Realtime Database → copia la URL (ej. <code>https://hospital-xxx-default-rtdb.firebaseio.com</code>)
     </div>
 
     <div class="config-paso">
-      <strong>Paso 1 — Crear proyecto Firebase (2 minutos)</strong>
-      1. Ve a <a class="config-link" href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a><br>
-      2. Clic en <strong>Agregar proyecto</strong> → ponle nombre (ej. <code>hospital-recepcion</code>) → Continuar hasta crear.<br>
-      3. En el menú izquierdo: <strong>Compilación → Realtime Database → Crear base de datos</strong><br>
-      4. Elige la región más cercana → selecciona <strong>Modo de prueba</strong> → Habilitar.<br>
-      5. Copia la URL que aparece (ej. <code>https://hospital-xxx-default-rtdb.firebaseio.com</code>)
+      <strong>Paso 2 — Clave VAPID para notificaciones</strong>
+      En Firebase → Configuración del proyecto (⚙️) → Cloud Messaging →
+      sección <strong>"Certificados push web"</strong> → clic en <strong>"Generar par de claves"</strong> → copia la <strong>Clave pública</strong>.
     </div>
 
     <div class="config-paso">
-      <strong>Paso 2 — Pegar la URL aquí</strong>
-      Pega solo la URL de tu base de datos. No necesitas claves API ni configuración extra.
+      <strong>Paso 3 — Pegar ambas claves abajo</strong>
     </div>
 
-    <div class="config-campo">
-      <label>URL de Firebase Realtime Database</label>
-      <input type="url" id="cfg-url"
-        placeholder="https://tu-proyecto-default-rtdb.firebaseio.com"
-        autocomplete="off" spellcheck="false">
+    <div class="cfg-f">
+      <label>URL de Firebase Realtime Database *</label>
+      <input id="cfg-url" type="url" placeholder="https://tu-proyecto-default-rtdb.firebaseio.com" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="cfg-f">
+      <label>Clave VAPID pública (para notificaciones) *</label>
+      <input id="cfg-vapid" type="text" placeholder="BxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxA" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="cfg-f">
+      <label>Nombre del hospital</label>
+      <input id="cfg-nombre" type="text" placeholder="Ej. Hospital San Rafael" maxlength="60">
     </div>
 
-    <div class="config-campo">
-      <label>Nombre del hospital (opcional)</label>
-      <input type="text" id="cfg-nombre" placeholder="Ej. Hospital San Rafael" maxlength="60">
-    </div>
-
-    <button class="btn-config" onclick="guardarConfig()">✅ Conectar y abrir aplicación</button>
-    <div class="config-error" id="cfg-error"></div>
+    <button class="btn-cfg" onclick="guardarConfig()">✅ Conectar y abrir aplicación</button>
+    <div class="cfg-err" id="cfg-err"></div>
   </div>
 </div>
 
-<!-- ══════════════════════ APLICACIÓN ══════════════════════ -->
+<!-- NAV -->
 <nav id="nav-app" style="display:none">
   <div class="nav-logo">🏥 <span id="nav-nombre">Hospital</span></div>
-  <button class="tab activo" id="tab-recepcion"  onclick="mostrarVista('recepcion')">📋 Recepción</button>
-  <button class="tab"        id="tab-consultorio" onclick="mostrarVista('consultorio')">🩺 Consultorio</button>
-  <button class="tab"        id="tab-panel"       onclick="mostrarVista('panel')">📊 Panel del Día</button>
-  <div class="nav-derecha">
-    <div id="estado-conexion">
-      <div class="dot-conexion dot-conectando"></div>
-      <span class="conectando">Conectando...</span>
-    </div>
-    <button class="btn-reconfig" onclick="reconfigurar()" title="Cambiar Firebase">⚙️</button>
+  <button class="tab activo" id="tab-recepcion"   onclick="mostrarVista('recepcion')">📋 Recepción</button>
+  <button class="tab"        id="tab-consultorio"  onclick="mostrarVista('consultorio')">🩺 Consultorio</button>
+  <button class="tab"        id="tab-panel"        onclick="mostrarVista('panel')">📊 Panel del Día</button>
+  <div class="nav-der">
+    <div id="estado-cx"><div class="dot-cx dot-wait"></div><span class="cx-wait">Conectando...</span></div>
+    <button class="btn-recfg" onclick="reconfigurar()">⚙️ Config</button>
     <div class="nav-hora" id="reloj"></div>
   </div>
 </nav>
 
-<!-- ── RECEPCIÓN ── -->
+<!-- RECEPCIÓN -->
 <div id="vista-recepcion" class="vista activa">
   <div class="contenedor">
     <div class="card">
-      <div class="card-titulo">📝 Registrar nuevo paciente</div>
-      <div class="grid-2">
+      <div class="card-t">📝 Registrar nuevo paciente</div>
+      <div class="grid2">
         <div class="campo">
           <label>Nombre completo *</label>
           <input id="nombre" type="text" placeholder="Ej. María García López" autocomplete="off">
@@ -265,7 +261,7 @@
           <input id="edad" type="number" placeholder="Años" min="0" max="120">
         </div>
       </div>
-      <div class="grid-2">
+      <div class="grid2">
         <div class="campo">
           <label>Teléfono</label>
           <input id="telefono" type="tel" placeholder="Ej. 55 1234 5678">
@@ -283,511 +279,409 @@
       </div>
       <div class="campo">
         <label>Motivo de visita *</label>
-        <input id="motivo" type="text" placeholder="Ej. Dolor de cabeza frecuente, revisión de resultados...">
+        <input id="motivo" type="text" placeholder="Ej. Dolor de cabeza, revisión de resultados...">
       </div>
       <div class="campo">
         <label>Observaciones adicionales</label>
         <textarea id="obs" placeholder="Alergias, urgencia especial, indicaciones del médico..."></textarea>
       </div>
-      <button class="btn-primario" id="btn-enviar" onclick="enviarPaciente()">
-        📤 Enviar al consultorio
-      </button>
+      <button class="btn-env" id="btn-env" onclick="enviarPaciente()">📤 Enviar al consultorio</button>
     </div>
-
-    <h2 class="seccion">Pacientes enviados hoy <span class="chip" id="cnt-recepcion">0</span></h2>
-    <div id="lista-recepcion"><div class="vacio">Sin pacientes registrados aún.</div></div>
+    <h2 class="sec">Pacientes enviados hoy <span class="chip" id="cnt-r">0</span></h2>
+    <div id="lista-r"><div class="vacio">Sin pacientes registrados aún.</div></div>
   </div>
 </div>
 
-<!-- ── CONSULTORIO ── -->
+<!-- CONSULTORIO -->
 <div id="vista-consultorio" class="vista">
   <div class="contenedor">
-    <h2 class="seccion">
-      <span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--verde);animation:pulsar 1.5s infinite"></span>
-      En espera / En atención <span class="chip" id="cnt-activos">0</span>
+    <h2 class="sec">
+      <span style="width:9px;height:9px;border-radius:50%;background:var(--verde);display:inline-block;animation:pls 1.5s infinite"></span>
+      En espera / En atención <span class="chip" id="cnt-a">0</span>
     </h2>
-    <div id="lista-consultorio"><div class="vacio">Sin pacientes pendientes.</div></div>
-
-    <h2 class="seccion" style="margin-top:2rem">Atendidos y cancelados <span class="chip" id="cnt-finalizados">0</span></h2>
-    <div id="lista-finalizados"><div class="vacio">Sin registros finalizados hoy.</div></div>
+    <div id="lista-c"><div class="vacio">Sin pacientes pendientes.</div></div>
+    <h2 class="sec" style="margin-top:2rem">Atendidos y cancelados <span class="chip" id="cnt-f">0</span></h2>
+    <div id="lista-f"><div class="vacio">Sin registros finalizados hoy.</div></div>
   </div>
 </div>
 
-<!-- ── PANEL ── -->
+<!-- PANEL -->
 <div id="vista-panel" class="vista">
   <div class="contenedor">
-    <div class="stats-grid" id="stats-grid"></div>
+    <div class="sg" id="sg"></div>
     <div class="card">
-      <div class="card-titulo">📋 Historial completo del día</div>
-      <div class="tabla-wrap">
+      <div class="card-t">📋 Historial completo del día</div>
+      <div class="tw">
         <table>
-          <thead><tr>
-            <th>Paciente</th><th>Tipo</th><th>Motivo</th>
-            <th>Llegada</th><th>Atención</th><th>Estado</th>
-          </tr></thead>
-          <tbody id="tabla-body"></tbody>
+          <thead><tr><th>Paciente</th><th>Tipo</th><th>Motivo</th><th>Llegada</th><th>Atención</th><th>Estado</th></tr></thead>
+          <tbody id="tb"></tbody>
         </table>
-        <div id="tabla-vacio" class="vacio" style="display:none">No hay registros hoy.</div>
+        <div id="tv" class="vacio" style="display:none">No hay registros hoy.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── ALERTA NUEVA LLEGADA ── -->
-<div id="alerta-nueva">
+<!-- ALERTA ESQUINA -->
+<div id="alerta">
   <div style="display:flex;align-items:flex-start;gap:.8rem">
-    <div id="alerta-icono" style="
-      width:48px;height:48px;min-width:48px;border-radius:50%;
-      background:#FFD600;display:flex;align-items:center;justify-content:center;
-      font-size:1.6rem;font-weight:900;color:#000;line-height:1;
-      animation:iconoPulsar .6s ease infinite alternate;flex-shrink:0">!</div>
+    <div style="width:44px;height:44px;min-width:44px;border-radius:50%;background:#FFD600;
+      display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+      font-weight:900;color:#000;animation:pip .6s ease infinite alternate;flex-shrink:0">!</div>
     <div>
-      <div class="alerta-t">Nuevo paciente en recepción</div>
-      <div class="alerta-d" id="alerta-d"></div>
+      <div class="al-t">Nuevo paciente</div>
+      <div class="al-d" id="al-d"></div>
     </div>
   </div>
-  <div style="display:flex;gap:.5rem;margin-top:.8rem">
-    <button onclick="cerrarAlerta()" style="flex:1">✓ Entendido</button>
-    <button onclick="repetirSonido()" style="flex:1">🔊 Repetir sonido</button>
+  <div class="al-btns">
+    <button class="al-btn" onclick="cerrarAlerta()">✓ Entendido</button>
+    <button class="al-btn" onclick="tocarAlarma()">🔊 Sonido</button>
   </div>
 </div>
 
-<!-- OVERLAY pantalla completa al llegar paciente -->
-<div id="overlay-alerta" style="
-  display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);
-  z-index:9990;align-items:center;justify-content:center;padding:1rem">
-  <div style="
-    background:#fff;border-radius:20px;padding:2rem;max-width:400px;width:100%;
-    text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:entrar .3s ease">
-    <div style="
-      width:80px;height:80px;border-radius:50%;background:#FFD600;
-      display:flex;align-items:center;justify-content:center;
-      font-size:3rem;font-weight:900;color:#000;margin:0 auto 1rem;
-      animation:iconoPulsar .5s ease infinite alternate">!</div>
-    <div style="font-size:1.4rem;font-weight:700;color:#1a6fa8;margin-bottom:.5rem">
-      ¡Nuevo paciente!
-    </div>
-    <div id="overlay-d" style="font-size:1rem;color:#444;line-height:1.6;margin-bottom:1.5rem"></div>
-    <button onclick="cerrarOverlay()" style="
-      background:#1a6fa8;color:#fff;border:none;border-radius:10px;
-      padding:1rem 2rem;font-size:1.1rem;font-weight:700;cursor:pointer;width:100%">
-      ✓ Recibido
-    </button>
+<!-- OVERLAY PANTALLA COMPLETA -->
+<div id="overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);
+  z-index:9985;align-items:center;justify-content:center;padding:1rem">
+  <div class="ov-box">
+    <div class="ov-ico">!</div>
+    <div class="ov-titulo">¡Nuevo paciente!</div>
+    <div class="ov-d" id="ov-d"></div>
+    <button class="ov-btn" onclick="cerrarOverlay()">✓ Recibido — entendido</button>
   </div>
 </div>
 
+<button id="btn-notif" onclick="pedirPermiso()">🔔 Activar notificaciones</button>
 <div id="toast"></div>
-<div id="btn-notif" style="
-  position:fixed;bottom:1.5rem;left:1.5rem;background:#FFD600;color:#000;
-  border:none;border-radius:10px;padding:.6rem 1rem;font-size:.8rem;font-weight:700;
-  cursor:pointer;display:none;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:500"
-  onclick="pedirPermiso()">
-  🔔 Activar notificaciones
-</div>
 
-<!-- ══════════════════════ FIREBASE SDK ══════════════════════ -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<!-- FIREBASE SDK -->
+<script src="https://cdn.jsdelivr.net/npm/firebase@9.23.0/firebase-app-compat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/firebase@9.23.0/firebase-database-compat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/firebase@9.23.0/firebase-messaging-compat.min.js"></script>
 
 <script>
-// ─── CONSTANTES ───────────────────────────────────────────────────────────────
-const TIPO_INFO = {
-  general:     {label:'Consulta general',    clase:'tipo-general',     icono:'🩺'},
-  ecg:         {label:'Electrocardiograma',  clase:'tipo-ecg',         icono:'💓'},
-  aseguradora: {label:'Aseguradora',         clase:'tipo-aseguradora', icono:'📄'},
-  otro:        {label:'Otro',                clase:'tipo-otro',        icono:'📌'},
+const TIPOS = {
+  general:    {l:'Consulta general',   c:'tg', i:'🩺'},
+  ecg:        {l:'Electrocardiograma', c:'te', i:'💓'},
+  aseguradora:{l:'Aseguradora',        c:'ta', i:'📄'},
+  otro:       {l:'Otro',              c:'to', i:'📌'},
 };
-const ESTADO_INFO = {
-  espera:    {label:'En espera',   clase:'badge-espera'},
-  recibido:  {label:'Recibido',    clase:'badge-recibido'},
-  consulta:  {label:'En consulta', clase:'badge-consulta'},
-  atendido:  {label:'Atendido',    clase:'badge-atendido'},
-  cancelado: {label:'Cancelado',   clase:'badge-cancelado'},
+const ESTADOS = {
+  espera:   {l:'En espera',   c:'be'},
+  recibido: {l:'Recibido',    c:'br'},
+  consulta: {l:'En consulta', c:'bc'},
+  atendido: {l:'Atendido',    c:'ba'},
+  cancelado:{l:'Cancelado',   c:'bx'},
 };
 
-// ─── CONFIGURACIÓN ────────────────────────────────────────────────────────────
-let db = null;
-let refHoy = null;
-let pacientes = {};
+let db=null, ref=null, msg=null, pacientes={}, vapidKey='';
 
-function claveHoy() {
-  const d = new Date();
+function hoy(){
+  const d=new Date();
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
 
-function guardarConfig() {
-  let url = document.getElementById('cfg-url').value.trim().replace(/\/+$/, '');
-  const nombre = document.getElementById('cfg-nombre').value.trim();
-  const err = document.getElementById('cfg-error');
-
-  if (!url || !url.startsWith('https://')) {
-    err.textContent = '⚠️ Pega la URL completa de Firebase (debe comenzar con https://)';
-    err.style.display = 'block'; return;
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+function guardarConfig(){
+  const url   = document.getElementById('cfg-url').value.trim().replace(/\/+$/,'');
+  const vapid = document.getElementById('cfg-vapid').value.trim();
+  const nom   = document.getElementById('cfg-nombre').value.trim() || 'Hospital';
+  const err   = document.getElementById('cfg-err');
+  if(!url.startsWith('https://')){
+    err.textContent='⚠️ La URL de Firebase debe comenzar con https://'; err.style.display='block'; return;
   }
-
-  localStorage.setItem('fb_url', url);
-  localStorage.setItem('hospital_nombre', nombre || 'Hospital');
-  err.style.display = 'none';
-  iniciarFirebase(url, nombre || 'Hospital');
+  if(vapid.length < 60){
+    err.textContent='⚠️ La clave VAPID parece incorrecta (debe ser una cadena larga)'; err.style.display='block'; return;
+  }
+  localStorage.setItem('fb_url',url);
+  localStorage.setItem('fb_vapid',vapid);
+  localStorage.setItem('fb_nom',nom);
+  err.style.display='none';
+  iniciar(url,vapid,nom);
 }
 
-function reconfigurar() {
-  if (!confirm('¿Cambiar la configuración de Firebase? La página se recargará.')) return;
-  localStorage.removeItem('fb_url');
+function reconfigurar(){
+  if(!confirm('¿Cambiar configuración? Se recargará la página.')) return;
+  ['fb_url','fb_vapid','fb_nom'].forEach(k=>localStorage.removeItem(k));
   location.reload();
 }
 
-function iniciarFirebase(url, nombre) {
-  try {
-    if (!firebase.apps.length) {
-      firebase.initializeApp({ databaseURL: url });
-    }
-    db = firebase.database();
-    refHoy = db.ref('pacientes/' + claveHoy());
+function iniciar(url, vapid, nom){
+  vapidKey = vapid;
+  try{
+    if(!firebase.apps.length) firebase.initializeApp({databaseURL:url});
+    db  = firebase.database();
+    ref = db.ref('pacientes/'+hoy());
 
-    document.getElementById('pantalla-config').style.display = 'none';
-    document.getElementById('nav-app').style.display = 'flex';
-    document.getElementById('nav-nombre').textContent = nombre;
-    document.title = nombre + ' — Recepción';
+    document.getElementById('pantalla-config').style.display='none';
+    document.getElementById('nav-app').style.display='flex';
+    document.getElementById('nav-nombre').textContent=nom;
+    document.title=nom+' — Recepción';
 
-    setEstadoConexion('conectando');
+    setCx('wait');
 
-    // Escucha en tiempo real
-    refHoy.on('value', snap => {
-      const datos = snap.val() || {};
-      const prevCount = Object.keys(pacientes).length;
-      pacientes = datos;
-      const newCount = Object.keys(pacientes).length;
-
-      // Notificar si llegó paciente nuevo (no al cargar inicial)
-      if (prevCount > 0 && newCount > prevCount) {
-        const todos = Object.values(pacientes).sort((a,b) => b.ts - a.ts);
-        if (todos.length) mostrarAlerta(todos[0]);
+    ref.on('value', snap=>{
+      const datos=snap.val()||{};
+      const prev=Object.keys(pacientes).length;
+      pacientes=datos;
+      if(prev>0 && Object.keys(pacientes).length>prev){
+        const ultimo=Object.values(pacientes).sort((a,b)=>b.ts-a.ts)[0];
+        if(ultimo) dispararAlerta(ultimo);
       }
-
       renderTodo();
-      setEstadoConexion('conectado');
-    }, error => {
-      console.error(error);
-      setEstadoConexion('desconectado');
-    });
+      setCx('ok');
+    }, ()=>setCx('no'));
 
-    db.ref('.info/connected').on('value', snap => {
-      setEstadoConexion(snap.val() ? 'conectado' : 'desconectado');
-    });
+    db.ref('.info/connected').on('value', s=>setCx(s.val()?'ok':'no'));
 
-  } catch(e) {
-    const err = document.getElementById('cfg-error');
-    err.textContent = 'Error al conectar: ' + e.message;
-    err.style.display = 'block';
-    document.getElementById('pantalla-config').style.display = 'flex';
-    document.getElementById('nav-app').style.display = 'none';
+    // Service Worker + FCM
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('sw.js')
+        .then(reg=>{
+          try{
+            msg = firebase.messaging();
+            msg.useServiceWorker && msg.useServiceWorker(reg);
+          }catch(e){ console.warn('FCM no disponible:',e); }
+        }).catch(e=>console.warn('SW:',e));
+    }
+
+    // Pedir permiso si no está concedido
+    if('Notification' in window && Notification.permission==='default'){
+      setTimeout(()=>document.getElementById('btn-notif').style.display='block', 2500);
+    }
+
+  }catch(e){
+    const err=document.getElementById('cfg-err');
+    err.textContent='Error al conectar: '+e.message; err.style.display='block';
+    document.getElementById('pantalla-config').style.display='flex';
+    document.getElementById('nav-app').style.display='none';
   }
 }
 
-function setEstadoConexion(estado) {
-  const el = document.getElementById('estado-conexion');
-  const textos = {
-    conectado:    ['dot-conectado',    'conectado',    '● Sincronizado'],
-    desconectado: ['dot-desconectado', 'desconectado', '● Sin conexión'],
-    conectando:   ['dot-conectando',   'conectando',   '● Conectando...'],
-  };
-  const [dotCls, spanCls, txt] = textos[estado] || textos.conectando;
-  el.innerHTML = `<div class="dot-conexion ${dotCls}"></div><span class="${spanCls}">${txt}</span>`;
-}
-
-// ─── AUTO-INICIO ──────────────────────────────────────────────────────────────
-window.addEventListener('load', () => {
-  const url = localStorage.getItem('fb_url');
-  const nombre = localStorage.getItem('hospital_nombre') || 'Hospital';
-  if (url) {
-    document.getElementById('cfg-url').value = url;
-    document.getElementById('cfg-nombre').value = nombre;
-    iniciarFirebase(url, nombre);
+window.addEventListener('load',()=>{
+  const url=localStorage.getItem('fb_url');
+  const vapid=localStorage.getItem('fb_vapid');
+  const nom=localStorage.getItem('fb_nom')||'Hospital';
+  if(url && vapid){
+    document.getElementById('cfg-url').value=url;
+    document.getElementById('cfg-vapid').value=vapid;
+    document.getElementById('cfg-nombre').value=nom;
+    iniciar(url,vapid,nom);
   }
   actualizarReloj();
-  setInterval(actualizarReloj, 30000);
+  setInterval(actualizarReloj,30000);
 });
 
-// ─── RELOJ ────────────────────────────────────────────────────────────────────
-function actualizarReloj() {
-  const d = new Date();
-  document.getElementById('reloj').textContent =
-    d.toLocaleDateString('es-MX',{weekday:'short',day:'numeric',month:'short'}) +
-    ' · ' + d.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+// ── CONEXIÓN ──────────────────────────────────────────────────────────────────
+function setCx(st){
+  const el=document.getElementById('estado-cx');
+  const m={ok:['dot-ok','cx-ok','● Sincronizado'],no:['dot-no','cx-no','● Sin conexión'],wait:['dot-wait','cx-wait','● Conectando...']};
+  const [d,s,t]=m[st]||m.wait;
+  el.innerHTML=`<div class="dot-cx ${d}"></div><span class="${s}">${t}</span>`;
 }
 
-// ─── NAVEGACIÓN ───────────────────────────────────────────────────────────────
-function mostrarVista(v) {
-  document.querySelectorAll('.vista').forEach(x => x.classList.remove('activa'));
-  document.querySelectorAll('nav button.tab').forEach(x => x.classList.remove('activo'));
+// ── RELOJ ─────────────────────────────────────────────────────────────────────
+function actualizarReloj(){
+  const d=new Date();
+  document.getElementById('reloj').textContent=
+    d.toLocaleDateString('es-MX',{weekday:'short',day:'numeric',month:'short'})+
+    ' · '+d.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+}
+
+// ── NAVEGACIÓN ────────────────────────────────────────────────────────────────
+function mostrarVista(v){
+  document.querySelectorAll('.vista').forEach(x=>x.classList.remove('activa'));
+  document.querySelectorAll('nav button.tab').forEach(x=>x.classList.remove('activo'));
   document.getElementById('vista-'+v).classList.add('activa');
   document.getElementById('tab-'+v).classList.add('activo');
 }
 
-// ─── ENVIAR PACIENTE ──────────────────────────────────────────────────────────
-function enviarPaciente() {
-  if (!db) { toast('Sin conexión a Firebase','rojo'); return; }
-  const nombre = document.getElementById('nombre').value.trim();
-  const tipo   = document.getElementById('tipo').value;
-  const motivo = document.getElementById('motivo').value.trim();
-
-  if (!nombre) { toast('⚠️ Escribe el nombre del paciente','naranja'); return; }
-  if (!tipo)   { toast('⚠️ Selecciona el tipo de atención','naranja'); return; }
-  if (!motivo) { toast('⚠️ Escribe el motivo de visita','naranja'); return; }
-
-  const btn = document.getElementById('btn-enviar');
-  btn.disabled = true;
-
-  const nuevo = {
-    nombre,
-    edad:      document.getElementById('edad').value.trim(),
-    telefono:  document.getElementById('telefono').value.trim(),
-    tipo, motivo,
-    obs:       document.getElementById('obs').value.trim(),
-    horaLlegada: new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'}),
-    horaAtencion: '',
-    estado:    'espera',
-    ts:        Date.now(),
+// ── ENVIAR PACIENTE ───────────────────────────────────────────────────────────
+function enviarPaciente(){
+  if(!db){toast('Sin conexión','rojo');return;}
+  const nombre=document.getElementById('nombre').value.trim();
+  const tipo  =document.getElementById('tipo').value;
+  const motivo=document.getElementById('motivo').value.trim();
+  if(!nombre){toast('⚠️ Escribe el nombre del paciente','naranja');return;}
+  if(!tipo)  {toast('⚠️ Selecciona el tipo de atención','naranja');return;}
+  if(!motivo){toast('⚠️ Escribe el motivo de visita','naranja');return;}
+  const btn=document.getElementById('btn-env');
+  btn.disabled=true;
+  const p={
+    nombre,edad:document.getElementById('edad').value.trim(),
+    telefono:document.getElementById('telefono').value.trim(),
+    tipo,motivo,obs:document.getElementById('obs').value.trim(),
+    horaLlegada:new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'}),
+    horaAtencion:'',estado:'espera',ts:Date.now()
   };
-
-  refHoy.push(nuevo)
-    .then(() => {
-      limpiarForm();
-      toast('✅ Paciente enviado al consultorio');
-    })
-    .catch(e => toast('Error al guardar: ' + e.message, 'rojo'))
-    .finally(() => btn.disabled = false);
+  ref.push(p)
+    .then(()=>{limpiar();toast('✅ Paciente enviado al consultorio');})
+    .catch(e=>toast('Error: '+e.message,'rojo'))
+    .finally(()=>btn.disabled=false);
 }
 
-function limpiarForm() {
-  ['nombre','edad','telefono','motivo','obs'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('tipo').value = '';
+function limpiar(){
+  ['nombre','edad','telefono','motivo','obs'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('tipo').value='';
 }
 
-// ─── CAMBIAR ESTADO ───────────────────────────────────────────────────────────
-function cambiarEstado(fbKey, estado) {
-  if (!refHoy) return;
-  const updates = { estado };
-  if (['atendido','cancelado'].includes(estado)) {
-    updates.horaAtencion = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
-  }
-  refHoy.child(fbKey).update(updates)
-    .catch(e => toast('Error: ' + e.message, 'rojo'));
+// ── ESTADO ────────────────────────────────────────────────────────────────────
+function cambiarEstado(k,estado){
+  if(!ref)return;
+  const u={estado};
+  if(['atendido','cancelado'].includes(estado))
+    u.horaAtencion=new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+  ref.child(k).update(u).catch(e=>toast('Error: '+e.message,'rojo'));
 }
 
-// ─── RENDER ───────────────────────────────────────────────────────────────────
-function badgeEstado(e) {
-  const i = ESTADO_INFO[e] || ESTADO_INFO.espera;
-  return `<span class="badge ${i.clase}">${i.label}</span>`;
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function bE(e){const i=ESTADOS[e]||ESTADOS.espera;return `<span class="badge ${i.c}">${i.l}</span>`;}
+function bT(t){const i=TIPOS[t]||TIPOS.otro;return `<span class="tb ${i.c}">${i.i} ${i.l}</span>`;}
+function bBtns(k,ea){
+  return [['recibido','Recibido','s-r'],['espera','En espera','s-e'],
+          ['consulta','En consulta','s-c'],['atendido','Atendido','s-a'],['cancelado','Cancelado','s-x']]
+    .map(([st,lb,cl])=>`<button class="be2 ${cl}${ea===st?' sel':''}" onclick="cambiarEstado('${k}','${st}')">${lb}</button>`)
+    .join('');
 }
-function badgeTipo(t) {
-  const i = TIPO_INFO[t] || TIPO_INFO.otro;
-  return `<span class="tipo-badge ${i.clase}">${i.icono} ${i.label}</span>`;
-}
-function botonesEstado(fbKey, estadoActual) {
-  return [
-    ['recibido','Recibido','btn-recibido'],
-    ['espera','En espera','btn-espera'],
-    ['consulta','En consulta','btn-consulta'],
-    ['atendido','Atendido','btn-atendido'],
-    ['cancelado','Cancelado','btn-cancelado'],
-  ].map(([k,l,c]) =>
-    `<button class="btn-estado ${c}${estadoActual===k?' sel':''}"
-      onclick="cambiarEstado('${fbKey}','${k}')">${l}</button>`
-  ).join('');
-}
-
-function tarjetaHTML(p, fbKey, acciones) {
-  return `
-  <div class="paciente-card" data-key="${fbKey}">
-    <div class="pac-header">
-      <div>
-        <div class="pac-nombre">${p.nombre}</div>
-        <div class="pac-meta">${p.edad?p.edad+' años · ':''}${p.telefono?'📞 '+p.telefono+' · ':''}🕐 ${p.horaLlegada}</div>
+function tarjeta(p,k,acc){
+  return `<div class="pac" data-k="${k}">
+    <div class="ph">
+      <div><div class="pn">${p.nombre}</div>
+        <div class="pm">${p.edad?p.edad+' años · ':''}${p.telefono?'📞 '+p.telefono+' · ':''}🕐 ${p.horaLlegada}</div>
       </div>
-      <div class="pac-badges">${badgeTipo(p.tipo)}${badgeEstado(p.estado)}</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">${bT(p.tipo)}${bE(p.estado)}</div>
     </div>
-    <div class="pac-detalle">
+    <div class="pd">
       <div><strong>Motivo:</strong> ${p.motivo}</div>
       ${p.obs?'<div style="grid-column:1/-1"><strong>Obs.:</strong> '+p.obs+'</div>':''}
     </div>
-    ${acciones?`<div class="pac-acciones">${botonesEstado(fbKey,p.estado)}</div>`:''}
+    ${acc?`<div class="pac-acc">${bBtns(k,p.estado)}</div>`:''}
   </div>`;
 }
 
-function renderTodo() {
-  const lista = Object.entries(pacientes)
-    .map(([k,p]) => ({...p, _key:k}))
-    .sort((a,b) => a.ts - b.ts);
+function renderTodo(){
+  const lista=Object.entries(pacientes).map(([k,p])=>({...p,_k:k})).sort((a,b)=>a.ts-b.ts);
+  document.getElementById('cnt-r').textContent=lista.length;
+  document.getElementById('lista-r').innerHTML=lista.length
+    ?[...lista].reverse().map(p=>tarjeta(p,p._k,false)).join('')
+    :'<div class="vacio">Sin pacientes registrados aún.</div>';
 
-  // Recepción
-  document.getElementById('cnt-recepcion').textContent = lista.length;
-  const lR = document.getElementById('lista-recepcion');
-  lR.innerHTML = lista.length
-    ? [...lista].reverse().map(p => tarjetaHTML(p, p._key, false)).join('')
-    : '<div class="vacio">Sin pacientes registrados aún.</div>';
+  const act=lista.filter(p=>!['atendido','cancelado'].includes(p.estado));
+  const fin=lista.filter(p=>['atendido','cancelado'].includes(p.estado));
+  document.getElementById('cnt-a').textContent=act.length;
+  document.getElementById('cnt-f').textContent=fin.length;
+  document.getElementById('lista-c').innerHTML=act.length
+    ?act.map(p=>tarjeta(p,p._k,true)).join(''):'<div class="vacio">Sin pacientes pendientes. ✓</div>';
+  document.getElementById('lista-f').innerHTML=fin.length
+    ?[...fin].reverse().map(p=>tarjeta(p,p._k,true)).join(''):'<div class="vacio">Sin registros finalizados hoy.</div>';
 
-  // Consultorio
-  const activos = lista.filter(p => !['atendido','cancelado'].includes(p.estado));
-  const finalizados = lista.filter(p => ['atendido','cancelado'].includes(p.estado));
-  document.getElementById('cnt-activos').textContent = activos.length;
-  document.getElementById('cnt-finalizados').textContent = finalizados.length;
-  document.getElementById('lista-consultorio').innerHTML = activos.length
-    ? activos.map(p => tarjetaHTML(p, p._key, true)).join('')
-    : '<div class="vacio">Sin pacientes pendientes. ✓</div>';
-  document.getElementById('lista-finalizados').innerHTML = finalizados.length
-    ? [...finalizados].reverse().map(p => tarjetaHTML(p, p._key, true)).join('')
-    : '<div class="vacio">Sin registros finalizados hoy.</div>';
-
-  // Panel stats
-  document.getElementById('stats-grid').innerHTML = [
+  document.getElementById('sg').innerHTML=[
     [lista.length,'Total del día','var(--azul)'],
-    [activos.filter(p=>p.estado==='espera').length,'En espera','#92400e'],
-    [activos.filter(p=>p.estado==='consulta').length,'En consulta','#1e40af'],
+    [act.filter(p=>p.estado==='espera').length,'En espera','#92400e'],
+    [act.filter(p=>p.estado==='consulta').length,'En consulta','#1e40af'],
     [lista.filter(p=>p.estado==='atendido').length,'Atendidos','var(--verde)'],
     [lista.filter(p=>p.estado==='cancelado').length,'Cancelados','var(--rojo)'],
-  ].map(([n,l,c]) =>
-    `<div class="stat-card"><div class="stat-num" style="color:${c}">${n}</div><div class="stat-label">${l}</div></div>`
-  ).join('');
+  ].map(([n,l,c])=>`<div class="sc"><div class="sn" style="color:${c}">${n}</div><div class="sl">${l}</div></div>`).join('');
 
-  // Tabla historial
-  const tbody = document.getElementById('tabla-body');
-  const tvacio = document.getElementById('tabla-vacio');
-  if (!lista.length) { tbody.innerHTML=''; tvacio.style.display='block'; return; }
-  tvacio.style.display='none';
-  tbody.innerHTML = [...lista].reverse().map(p => `
-    <tr>
-      <td><strong>${p.nombre}</strong>${p.edad?'<br><small style="color:var(--gris)">'+p.edad+' años</small>':''}</td>
-      <td>${badgeTipo(p.tipo)}</td>
-      <td style="max-width:180px;font-size:.83rem">${p.motivo}</td>
-      <td style="white-space:nowrap">${p.horaLlegada}</td>
-      <td style="white-space:nowrap">${p.horaAtencion||'—'}</td>
-      <td>${badgeEstado(p.estado)}</td>
-    </tr>`).join('');
+  const tb=document.getElementById('tb'), tv=document.getElementById('tv');
+  if(!lista.length){tb.innerHTML='';tv.style.display='block';return;}
+  tv.style.display='none';
+  tb.innerHTML=[...lista].reverse().map(p=>`<tr>
+    <td><strong>${p.nombre}</strong>${p.edad?'<br><small style="color:var(--gris)">'+p.edad+' años</small>':''}</td>
+    <td>${bT(p.tipo)}</td><td style="max-width:175px;font-size:.82rem">${p.motivo}</td>
+    <td style="white-space:nowrap">${p.horaLlegada}</td>
+    <td style="white-space:nowrap">${p.horaAtencion||'—'}</td>
+    <td>${bE(p.estado)}</td></tr>`).join('');
 }
 
-// ─── SONIDO ───────────────────────────────────────────────────────────────────
-let audioCtx = null;
-
-function getAudioCtx() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  return audioCtx;
+// ── SONIDO ────────────────────────────────────────────────────────────────────
+let actx=null;
+function getCtx(){
+  if(!actx) actx=new(window.AudioContext||window.webkitAudioContext)();
+  if(actx.state==='suspended') actx.resume();
+  return actx;
 }
-
-function tocarAlarma() {
-  try {
-    const ctx = getAudioCtx();
-    if (ctx.state === 'suspended') ctx.resume();
-
-    // Secuencia: 3 pitidos urgentes + tono largo
-    const secuencia = [
-      {freq:880, start:0,    dur:0.18, vol:1.0},
-      {freq:880, start:0.22, dur:0.18, vol:1.0},
-      {freq:880, start:0.44, dur:0.18, vol:1.0},
-      {freq:660, start:0.70, dur:0.55, vol:0.85},
-      {freq:880, start:1.35, dur:0.18, vol:1.0},
-      {freq:880, start:1.55, dur:0.18, vol:1.0},
-      {freq:1100,start:1.80, dur:0.6,  vol:0.9},
-    ];
-
-    secuencia.forEach(({freq, start, dur, vol}) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.type = 'square';
-      osc.frequency.setValueAtTime(freq, ctx.currentTime + start);
-      gain.gain.setValueAtTime(0, ctx.currentTime + start);
-      gain.gain.linearRampToValueAtTime(vol * 0.4, ctx.currentTime + start + 0.01);
-      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + start + dur);
-      osc.start(ctx.currentTime + start);
-      osc.stop(ctx.currentTime + start + dur + 0.05);
+function tocarAlarma(){
+  try{
+    const ctx=getCtx();
+    [[880,0,.18,1],[880,.22,.18,1],[880,.44,.18,1],[660,.70,.55,.85],
+     [880,1.35,.18,1],[880,1.55,.18,1],[1100,1.80,.6,.9]].forEach(([f,s,d,v])=>{
+      const o=ctx.createOscillator(), g=ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.type='square'; o.frequency.setValueAtTime(f,ctx.currentTime+s);
+      g.gain.setValueAtTime(0,ctx.currentTime+s);
+      g.gain.linearRampToValueAtTime(v*.4,ctx.currentTime+s+.01);
+      g.gain.linearRampToValueAtTime(0,ctx.currentTime+s+d);
+      o.start(ctx.currentTime+s); o.stop(ctx.currentTime+s+d+.05);
     });
-  } catch(e) { console.warn('Audio no disponible:', e); }
+  }catch(e){console.warn('Audio:',e);}
 }
 
-function repetirSonido() { tocarAlarma(); }
-
-// ─── NOTIFICACIONES DEL NAVEGADOR ────────────────────────────────────────────
-function pedirPermiso() {
-  if (!('Notification' in window)) return;
-  Notification.requestPermission().then(p => {
-    if (p === 'granted') {
-      document.getElementById('btn-notif').style.display = 'none';
+// ── NOTIFICACIONES ────────────────────────────────────────────────────────────
+function pedirPermiso(){
+  if(!('Notification' in window)) return;
+  Notification.requestPermission().then(p=>{
+    if(p==='granted'){
+      document.getElementById('btn-notif').style.display='none';
       toast('✅ Notificaciones activadas');
+      suscribirFCM();
     }
   });
 }
 
-function enviarNotifNavegador(p) {
-  if (!('Notification' in window)) return;
-  if (Notification.permission === 'granted') {
-    new Notification('🏥 Nuevo paciente en recepción', {
-      body: `${p.nombre}\n${(TIPO_INFO[p.tipo]||TIPO_INFO.otro).label}\nMotivo: ${p.motivo}`,
-      icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="%23FFD600"/><text x="32" y="46" text-anchor="middle" font-size="44" font-weight="900" font-family="Arial" fill="%23000">!</text></svg>',
-      badge: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="%23FFD600"/><text x="32" y="46" text-anchor="middle" font-size="44" font-weight="900" font-family="Arial" fill="%23000">!</text></svg>',
-      requireInteraction: true,
-      vibrate: [300, 100, 300, 100, 600],
+function suscribirFCM(){
+  if(!msg || !vapidKey) return;
+  msg.getToken({vapidKey}).then(token=>{
+    if(token){
+      // Guardar token en Firebase para que el SW pueda usarlo
+      db.ref('tokens/'+btoa(token).slice(0,20)).set({token, ts:Date.now()});
+      console.log('FCM token registrado');
+    }
+  }).catch(e=>console.warn('FCM token:',e));
+}
+
+function enviarNotifNavegador(p){
+  if(!('Notification' in window)) return;
+  if(Notification.permission!=='granted') return;
+  const t=TIPOS[p.tipo]||TIPOS.otro;
+  const ico='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="%23FFD600"/><text x="32" y="47" text-anchor="middle" font-size="46" font-weight="900" font-family="Arial" fill="%23000">!</text></svg>';
+  try{
+    new Notification('🏥 Nuevo paciente — '+localStorage.getItem('fb_nom'),{
+      body:`${p.nombre}\n${t.i} ${t.l}\n${p.motivo}`,
+      icon: ico, badge: ico, requireInteraction:true,
+      vibrate:[400,150,400,150,800],
+      tag:'nuevo-paciente',renotify:true
     });
-  } else if (Notification.permission === 'default') {
-    document.getElementById('btn-notif').style.display = 'block';
-  }
+  }catch(e){console.warn('Notif:',e);}
 }
 
-// ─── ALERTA ───────────────────────────────────────────────────────────────────
-function mostrarAlerta(p) {
-  const t = TIPO_INFO[p.tipo] || TIPO_INFO.otro;
-  const html = `<strong>${p.nombre}</strong><br>${t.icono} ${t.label}<br>Motivo: ${p.motivo}<br>🕐 Llegó: ${p.horaLlegada}`;
-
-  // Alerta esquina
-  document.getElementById('alerta-d').innerHTML = html;
-  const al = document.getElementById('alerta-nueva');
-  al.style.display = 'block';
-  clearTimeout(al._timer);
-  al._timer = setTimeout(() => al.style.display='none', 15000);
-
-  // Overlay pantalla completa
-  document.getElementById('overlay-d').innerHTML = html;
-  const ov = document.getElementById('overlay-alerta');
-  ov.style.display = 'flex';
-  clearTimeout(ov._timer);
-  ov._timer = setTimeout(() => ov.style.display='none', 20000);
-
-  // Sonido
+// ── ALERTA ────────────────────────────────────────────────────────────────────
+function dispararAlerta(p){
+  const t=TIPOS[p.tipo]||TIPOS.otro;
+  const html=`<strong>${p.nombre}</strong><br>${t.i} ${t.l}<br>${p.motivo}<br>🕐 ${p.horaLlegada}`;
+  document.getElementById('al-d').innerHTML=html;
+  const al=document.getElementById('alerta');
+  al.style.display='block'; clearTimeout(al._t);
+  al._t=setTimeout(()=>al.style.display='none',15000);
+  document.getElementById('ov-d').innerHTML=html;
+  const ov=document.getElementById('overlay');
+  ov.style.display='flex'; clearTimeout(ov._t);
+  ov._t=setTimeout(()=>ov.style.display='none',20000);
   tocarAlarma();
-
-  // Notificación del navegador
   enviarNotifNavegador(p);
-
-  // Vibración (móvil)
-  if (navigator.vibrate) navigator.vibrate([400, 150, 400, 150, 800]);
+  if(navigator.vibrate) navigator.vibrate([400,150,400,150,800]);
 }
 
-function cerrarAlerta() {
-  document.getElementById('alerta-nueva').style.display = 'none';
-}
+function cerrarAlerta(){document.getElementById('alerta').style.display='none';}
+function cerrarOverlay(){document.getElementById('overlay').style.display='none';}
 
-function cerrarOverlay() {
-  document.getElementById('overlay-alerta').style.display = 'none';
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+function toast(msg,tipo){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.background=tipo==='rojo'?'var(--rojo)':tipo==='naranja'?'var(--naranja)':'var(--verde)';
+  t.style.display='block'; clearTimeout(t._t);
+  t._t=setTimeout(()=>t.style.display='none',3500);
 }
-
-// ─── TOAST ────────────────────────────────────────────────────────────────────
-function toast(msg, tipo) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.style.background = tipo==='rojo'?'var(--rojo)':tipo==='naranja'?'var(--naranja)':'var(--verde)';
-  t.style.display = 'block';
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.style.display='none', 3500);
-}
-
-// ─── INIT NOTIFICACIONES ──────────────────────────────────────────────────────
-window.addEventListener('load', () => {
-  if ('Notification' in window && Notification.permission === 'default') {
-    setTimeout(() => document.getElementById('btn-notif').style.display = 'block', 3000);
-  }
-});
 </script>
 </body>
 </html>

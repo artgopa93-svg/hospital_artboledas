@@ -1,8 +1,8 @@
 // Service Worker — Recepción Hospital
 // Maneja notificaciones push con pantalla bloqueada
 
-importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging-compat.js');
+importScripts('https://cdn.jsdelivr.net/npm/firebase@9.23.0/firebase-app-compat.min.js');
+importScripts('https://cdn.jsdelivr.net/npm/firebase@9.23.0/firebase-messaging-compat.min.js');
 
 const CACHE = 'hospital-v1';
 const ARCHIVOS = ['/', '/index.html', '/manifest.json'];
